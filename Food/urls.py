@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-import recipes.views.home
+from recipes.views import home, instruction
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', recipes.views.home, name='home'),
+    path('', home, name='home'),
+    path('recipes/', instruction, name = 'instruction' )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

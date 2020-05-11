@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Album example · Bootstrap</title>
+    <title>Home Recipes</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -42,7 +42,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="album.css" rel="stylesheet">
+    <link rel="stylesheet">
   </head>
   <body>
     <header>
@@ -96,14 +96,16 @@
         {%for recipe in recipes.all%}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
-            <svg class="card-img-top" src="{{recipe.image.url}}"  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ></svg>
+            <img class="card-img-top" src="{{recipe.image.url}}"  preserveAspectRatio="xMidYMid slice" focusable="false" role="img" ></img>
             <div class="card-body">
-              <h5 class = "text-black"> {{recipe.name}} </h5>
+              <h5>
+                  <a href="{% url 'instruction' %}" style = "color:black;">{{recipe.name}}</a>
+              </h5>
               <p class="card-text"> {{recipe.description}} </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                 </div>
-                <small class="text-muted">9 mins</small>
+                <small class="text-muted">{{recipe.duration}}</small>
               </div>
             </div>
           </div>
