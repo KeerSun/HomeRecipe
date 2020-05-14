@@ -8,9 +8,11 @@ class recipe(models.Model):
     duration = models.CharField(max_length = 6)
     mealType = models.CharField(max_length = 20)
 
-    ingredients = ArrayField(models.TextField())
     introduction = models.TextField()
+    tools = ArrayField(models.TextField())
+    prep = ArrayField(models.TextField())
+    ingredients = ArrayField(models.TextField())
+    ingNote = models.TextField()
     instructionsTxt = ArrayField(models.TextField())
-    # instructionsImg = ArrayField(models.ImageField(upload_to = 'images/'))
-
+    note = models.TextField()
 

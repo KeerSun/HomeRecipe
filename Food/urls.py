@@ -23,5 +23,5 @@ from recipes.views import home, instruction
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('recipes/{recipes.recipe.name}/', instruction, name = 'instruction' )
+    path('instructions/<str:ID>/', instruction, name = 'instructions' )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,16 +4,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content="instruction page">
+    <meta name="author" content="Keer Sun, template by bootstrap">
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../media/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../media/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../media/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../../../media/favicon_io/site.webmanifest">
 
     <title>Recipe Instruction</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
     <link href="blog.css" rel="stylesheet">
   </head>
@@ -44,7 +47,7 @@
     <div class="navbar navbar-light bg-light shadow-sm">
       <div class="container d-flex justify-content-between">
         <a href= "{% url 'home' %}" style = "color:black;" class="navbar-brand d-flex align-items-center">
-          <strong>好吃的 Home Recipes</strong>
+          <img src="../../../media/images/logo.png" width = "180px" focusable="false" role="img" ></img>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -53,7 +56,6 @@
     </div>
   </header>
 
-  {%for recipe in recipes.all%}
 
     <img src="{{recipe.image.url}}" class="img-fluid" width = "100%"> </img>
     
@@ -67,15 +69,19 @@
             <h2 class="blog-post-title" >{{recipe.name}}</h2>
             <p class="blog-post-meta"> Total Time: {{recipe.duration}} </p>
 
-            <p>{{recipe.introduction}}</p>
+            <p>{{recipe.description}}</p>
             <hr>
-            <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <blockquote>
-              <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </blockquote>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p>{{recipe.introduction}}</p>
+
+            <h2>Tools Needed</h2>
+            <ul>
+              {%for tool in recipe.tools%}
+              <li>{{tool}}</li>
+              {%endfor%}
+            </ul>
+
             <h2>Ingredients</h2>
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <p>{{recipe.ingNote}}</p>
             <ul>
               {%for ing in recipe.ingredients%}
               <li>{{ing}}</li>
@@ -83,17 +89,16 @@
             </ul>
 
             <h2>Steps</h2>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
             <ol>
               {%for step in recipe.instructionsTxt%}
               <li>{{step}}</li>
               {%endfor%}
             </ol>
-            <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
+            
+            <hr>
+            <p>Note: {{recipe.note}} </p>
           </div><!-- /.blog-post -->
 
-{%endfor%}
         </div><!-- /.blog-main -->
         
       </div><!-- /.row -->
@@ -103,6 +108,7 @@
     <footer class="blog-footer">
       <div class="container">
         <a href="#">Back to top</a>
+        <hr>
         <p>CopyRight Keer Sun {% now "Y" %}</p>
       </div>
     </footer>

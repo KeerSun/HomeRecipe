@@ -6,5 +6,6 @@ recipes = recipe.objects
 def home(request):
     return render(request,'recipes/home.html',{'recipes':recipes})
 
-def instruction(request):
-    return render(request, 'recipes/instructions.html', {'recipes':recipes} )
+def instruction(request,ID):
+    recipe = recipes.get(id = ID)
+    return render(request, 'recipes/instructions.html', {'recipe':recipe} )
